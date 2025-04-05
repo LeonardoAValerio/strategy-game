@@ -2,7 +2,6 @@ import express, { json } from "express"
 import { config } from "dotenv"
 import { createServer } from "node:http";
 import { Server } from "socket.io";
-import { Game } from "./services/game/game";
 import { routes } from "./routes/routes";
 config();
 
@@ -18,7 +17,7 @@ export const io = new Server(server, {
     }
 });
 
-export const games: Record<string, Game> = {}
+export const games: string[] = []
 
 const port = process.env.PORT || "8000";
 

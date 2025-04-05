@@ -7,7 +7,7 @@ export interface GameAttributes {
     columns: number;
 }
 
-export class Game {
+export class GameService {
     private _map: Tile[][];
     
     constructor(attributes: GameAttributes) {

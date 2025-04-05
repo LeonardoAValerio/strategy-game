@@ -13,7 +13,7 @@
     <ul id="messages"></ul>
 
     <script>
-        const socket = io("http://localhost:8000");
+        const socket = io("http://localhost:8000/games/08655b09-22dc-4501-993f-22e33dbff75f");
 
         socket.on("message", (message) => {
             const li = document.createElement("li");
