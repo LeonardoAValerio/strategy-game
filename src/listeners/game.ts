@@ -1,4 +1,4 @@
-import { DefaultEventsMap, Socket } from "socket.io";
+import { DefaultEventsMap, DisconnectReason, Socket } from "socket.io";
 import { ListenerBase, ListenerBaseAttributes } from "./base";
 import { GameService } from "../services/game/game";
 
@@ -17,7 +17,7 @@ export class ListenerGame extends ListenerBase implements ListenerGameAttributes
     playersConnected: string[];
     columns: number;
     rows: number;
-    private service: GameService
+    private service: GameService;    
 
     constructor(attributes: ListenerGameAttributes) {
         super(attributes.io);
@@ -34,12 +34,19 @@ export class ListenerGame extends ListenerBase implements ListenerGameAttributes
     }
 
     private connection(socket: SocketUser) {
-        console.log(this);
         if(this.playersConnected.length >= this.maxPlayers){
             socket.disconnect();
         }else {
             this.playersConnected.push(socket.id);
-            this.io.emit("message", "Novo jogador entrou na partida!")
+            this.io.emit("message", "Novo jogador entrou na partida!");
+
+            socket.on("disconnect", (reason: DisconnectReason, description?: any) => { this.disconnect(reason, socket, description ) });
         }
+    }
+
+    private disconnect(reason: DisconnectReason, socket: SocketUser, description?: any ) {
+        this.io.emit("message", `jogador-${socket.id} disconectado`);
+        const index = this.playersConnected.findIndex((id) => id === socket.id);
+        this.playersConnected.splice(index, 1);
     }
 }
