@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat com Socket.io</title>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+    <h2>Chat</h2>
+    <input id="messageInput" type="text" placeholder="Digite uma mensagem">
+    <button onclick="sendMessage()">Enviar</button>
+    <ul id="messages"></ul>
+
+    <script>
+        const socket = io("http://localhost:8000");
+
+        socket.on("message", (message) => {
+            const li = document.createElement("li");
+            li.textContent = message;
+            document.getElementById("messages").appendChild(li);
+        });
+
+        function sendMessage() {
+            const input = document.getElementById("messageInput");
+            const message = input.value;
+            socket.emit("message", message);
+            input.value = "";
+        }
+    </script>
+</body>
+</html>
