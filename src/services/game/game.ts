@@ -1,5 +1,6 @@
 import { Map } from "../../models/map/map";
 import { NoiseMap } from "../../models/map/noiseMap";
+import { Tile } from "../../models/tile/tile";
 
 export interface GameAttributes {
     rows: number;
@@ -7,7 +8,7 @@ export interface GameAttributes {
 }
 
 export class Game {
-    private _map: Map;
+    private _map: Tile[][];
     
     constructor(attributes: GameAttributes) {
         this._map = new Map({noiseMap: new NoiseMap({
@@ -15,6 +16,6 @@ export class Game {
             rows: attributes.rows,
             max: 5,
             min: 0
-        })});
+        })}).map;
     }
 }
