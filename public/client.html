@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat com Socket.io</title>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <main class="main-screen">
+        <div>
+            <div>
+                <h2 class="title">Game</h2>
+                <div class="enter-game">
+                    <input id="messageInput" type="text" placeholder="Digite o id do game">
+                    <button id="buttonGame">Entrar</button>
+                </div>
+            </div>
+            <div id="game">
+                <ul class="events">
+    
+                </ul>
+                <table class="map-game">
+
+                </table>
+            </div>
+        </div>
+        <script src="./main.js"></script>
+    </main>
+</body>
+</html>
