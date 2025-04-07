@@ -39,8 +39,9 @@ export class ListenerGame extends ListenerBase implements ListenerGameAttributes
         }else {
             this.playersConnected.push(socket.id);
             this.io.emit("message", "Novo jogador entrou na partida!");
+            socket.emit("map", this.service._map);
 
-            socket.on("disconnect", (reason: DisconnectReason, description?: any) => { this.disconnect(reason, socket, description ) });
+            socket.on("disconnect", (reason: DisconnectReason, description?: any) => { this.disconnect(reason, socket, description) });
         }
     }
 

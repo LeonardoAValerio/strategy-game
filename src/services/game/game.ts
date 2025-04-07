@@ -8,7 +8,7 @@ export interface GameAttributes {
 }
 
 export class GameService {
-    private _map: Tile[][];
+    _map: Tile[][];
     
     constructor(attributes: GameAttributes) {
         this._map = new Map({noiseMap: new NoiseMap({

@@ -1,5 +1,4 @@
 const NoiseJS = require('noisejs');
-const noise = new NoiseJS.Noise(Math.random());
 
 export interface NoiseMapAttributes {
     rows: number
@@ -28,7 +27,8 @@ export class NoiseMap implements NoiseMapAttributes {
 
     private generateNoiseMap() {
         const range = this.max - this.min;
-
+        const noise = new NoiseJS.Noise(Math.random());
+        
         return Array.from({ length: this.rows }, (_, y) =>
             Array.from({ length: this.columns }, (_, x) => {
             const raw = noise.perlin2(x * this.scale, y * this.scale); // entre -1 e 1
